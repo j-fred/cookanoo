@@ -9,7 +9,7 @@ module.exports = {
             if(err){
                 console.log('Error : ', err);
             }else{
-                res.render("../views/phones/index",{datas:datas} );
+                res.render("../views/phones/index",{ title: 'Phone 974', datas:["samsung","iphone","LG"] } );
             } 
         });
     },
