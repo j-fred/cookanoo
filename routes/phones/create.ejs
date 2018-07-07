@@ -1,0 +1,110 @@
+<% include ../../partials/head.ejs %>
+<form action="/voitures/admin/save" method="POST" class="needs-validation p-5" novalidate enctype="multipart/form-data">
+    <div class="form-group mt-2">
+        <h1 for="">Ajouter une voiture</h1>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="marque">Marque</label>
+                <input type="text" class="form-control mt-2" name="marque" id="marque" aria-describedby="" placeholder="Ford">
+                <div class="invalid-feedback">
+                    ajouter la marque
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="modele">Modèle</label>
+                <input type="text" class="form-control mt-2" name="modele" id="modele" aria-describedby="" placeholder="Fiesta">
+                <div class="invalid-feedback">
+                    ajouter le modèle
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="image">Upload de l'image</label>
+            <input type="hidden" class="form-control mt-2" name="image" id="image" aria-describedby="" placeholder="http://..." required>
+            <input type="file" class="form-control mt-2" name="file-image" value="fileupload" id="file-image">
+            <div class="upload invalid-feedback">
+                ajouter le lien vers l'image
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="puissance">Puissance</label>
+            <input type="text" class="form-control mt-2" name="puissance" id="puissance" min="1" max="15" aria-describedby="" placeholder="5CV">
+            <div class="invalid-feedback">
+                ajouter la puissance
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="motorisation">Motorisation</label>
+            <select class="form-control mt-2" name="motorisation" id="motorisation">
+                <option value="Diesel">Diesel</option>
+                <option value="Essence">Essence</option>
+                <option value="Hybride">Hybride</option>
+                <option value="Electrique">Electrique</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="prix">Prix</label>
+                <input type="number" class="form-control mt-2" name="prix" id="prix" step="100" aria-describedby="" placeholder="1000">
+                <div class="invalid-feedback">
+                    ajouter le nombre de le prix
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="couleur">Couleur</label>
+                <input type="text" class="form-control mt-2" name="couleur" id="couleur" aria-describedby="" placeholder="Blanc">
+                <div class="invalid-feedback">
+                    ajouter la couleur
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="portes">Portes</label>
+                <input type="number" class="form-control mt-2" name="portes" id="portes" aria-describedby="" placeholder="3">
+                <div class="invalid-feedback">
+                    ajouter le nombre de portes
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="places">Places</label>
+                <input type="number" class="form-control mt-2" name="places" id="places" aria-describedby="" placeholder="5">
+                <div class="invalid-feedback">
+                    ajouter le nombre de places
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="actif" class="mt-3">Actif</label>
+            <input type="checkbox" name="actif" id="actif">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+</form>
+    <script>
+      // Validation des champs du formulaire via JavaScript
+      (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener('submit', function (event) {
+              $('#image').val($('#file-image').prop('files')[0].name);
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              // verification du poids de l'image
+              if ($('#image').prop('files')[0].size > 2000000) {
+                event.preventDefault();
+                event.stopPropagation();
+                alert("fichier trop volumineux");
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>
