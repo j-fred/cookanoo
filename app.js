@@ -9,15 +9,16 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 var urlDB = process.env.DBPHONE;//var avec la base mongo
-
 console.log('urlDB => ',  urlDB);
+// urlDB = 'mongodb://login:mdp@ds129321.mlab.com:29321/phone974'
+// console.log('urlDB => ',  urlDB);
+
 //connection à la base de données
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-//mongodb://phone:phone974@ds129321.mlab.com:29321/phone974
 // mongoose.connect('mongodb://localhost/Idriss')
 mongoose.connect(urlDB)
-  .then(() =>  console.log('connection succesful'))
+  .then(() =>  console.log('connection a la base ok'))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
