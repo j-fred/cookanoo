@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 
-var Particulier = require("../models/Particulier");
+var Phone = require("../models/Phone");
 
 module.exports = {
     //Liste les données
     list : function(req, res) {
-        Particulier.find({}).exec(function(err, datas){
+        Phone.find({}).exec(function(err, datas){
             if(err){
                 console.log('Error : ', err);
             }else{
@@ -16,7 +16,7 @@ module.exports = {
 
     //Affiche la donnée par son id
     show : function(req, res) {
-        Particulier.findOne({_id:req.params.id}).exec(function(err, data){
+        Phone.findOne({_id:req.params.id}).exec(function(err, data){
             if(err){
                 console.log('Error : ', err);
             }else{
@@ -32,24 +32,24 @@ module.exports = {
 
     //enregistrement des données
     save: function(req, res){
-        var particulier = new Particulier(req.body);
+        var phone = new Phone(req.body);
 
-        particulier.save(function(err){
+        phone.save(function(err){
             if(err){
                 console.log(err);
                 res.render("../views/phones/create");
             } else{
                 console.log("creation OK");
-                res.redirect("/phones/show/" + particulier._id);
+                res.redirect("/phones/show/" + phone._id);
             } 
         });
     },
 
     //edition de la donnée par son id
     edit : function(req, res){
-        var particulier = new Particulier(req.body);
+        var phone = new Phone(req.body);
 
-        Particulier.findOne({_id:req.params.id}).exec(function(err, data){
+        Phone.findOne({_id:req.params.id}).exec(function(err, data){
             if(err){
                 console.log("Error ", err);
             } else{
@@ -60,7 +60,7 @@ module.exports = {
 
     //gestion de l'edition de la donnée
     update : function(req, res){
-        Particulier.findByIdAndUpdate(req.params.id,{ $set :{nom: req.body.nom, prix: req.body.prix} },{new: true}, function (err, data){
+        Phone.findByIdAndUpdate(req.params.id,{ $set :{nom: req.body.nom, prix: req.body.prix} },{new: true}, function (err, data){
             if (err){
                 console.log(err);
                 res.render("../views/phones/edit",{data:req.body} );
@@ -72,7 +72,7 @@ module.exports = {
 
     //gestion de l'edition de la donnée
     push : function(req, res){
-        Particulier.findByIdAndUpdate(req.params.id,{ $set :{nom: req.body.nom, prix: req.body.prix}, "$push": { dim:  req.body._id }  },{new: true}, function (err, data){
+        Phone.findByIdAndUpdate(req.params.id,{ $set :{nom: req.body.nom, prix: req.body.prix}, "$push": { dim:  req.body._id }  },{new: true}, function (err, data){
             if (err){
                 console.log(err);
                 res.render("../views/phones/edit",{data:req.body} );

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var data = require("../controllers/particuliersController");
+var data = require("../controllers/phonesController");
 
 //recuperer les datas
 router.get("/", data.list);
