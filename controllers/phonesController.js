@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var Phone = require("../models/Phone");
 
+var jwt = require('jsonwebtoken');
 module.exports = {
     //Liste les données
     list : function(req, res) {
@@ -26,8 +27,13 @@ module.exports = {
     },
 
     //redirection à la page de creation
-    create : function(req, res){
-        res.render("../views/phones/create");
+    create : function(req, res){     
+        // res.render("../views/phones/create");
+        res.json({
+            description: 'Protected information. Congrats!',
+            data:req.body,
+            token:req.token
+        })  
     },
 
     //enregistrement des données

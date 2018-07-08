@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var data = require("../controllers/phonesController");
+var jwtC = require("../controllers/jwtController");
 
 //recuperer les datas
 router.get("/", data.list);
@@ -10,7 +11,7 @@ router.get("/", data.list);
 router.get("/show/:id", data.show);
 
 //cree un data
-router.get("/create", data.create);
+router.get("/create", jwtC.ensureToken, jwtC.verifAdmin, data.create);
 
 //sauvegarder un data. /!\ cest un POST 
 router.post("/save", data.save);

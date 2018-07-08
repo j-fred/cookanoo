@@ -1,7 +1,7 @@
 <% include ../partials/head.ejs %>
 <form action="/voitures/admin/save" method="POST" class="needs-validation p-5" novalidate enctype="multipart/form-data">
     <div class="form-group mt-2">
-        <h1 for="">Ajouter un telephone</h1>
+        <h1 for="">Ajouter une voiture</h1>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="marque">Marque</label>
@@ -24,6 +24,13 @@
             <input type="file" class="form-control mt-2" name="file-image" value="fileupload" id="file-image">
             <div class="upload invalid-feedback">
                 ajouter le lien vers l'image
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="puissance">Puissance</label>
+            <input type="text" class="form-control mt-2" name="puissance" id="puissance" min="1" max="15" aria-describedby="" placeholder="5CV">
+            <div class="invalid-feedback">
+                ajouter la puissance
             </div>
         </div>
         <div class="form-group">

@@ -5,7 +5,7 @@ var PhoneSchema = new mongoose.Schema({
     marque : String,
     modele : String,
 	prix : Number,
-	img : String,
+	image : String,
 	capacite : Number,
 	dim : [Number]
 });

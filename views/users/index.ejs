@@ -1,0 +1,76 @@
+<% include ../partials/head.ejs %>
+    <body class="bg-dark">
+    <div class="container-fluid p-0 text-center">
+    <h1 class="deepshd"> <%= title %> </h1>
+    <!-- Button trigger modal --> 
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">+</button>
+    <h3><a href="#">Liste des téléphones</a></h3>
+    <% if(datas.length > 0){%>
+      <table >
+          <thead>
+              <tr>
+                  <th>telephones</th>
+                  <th>Prix</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+              <% for (var i=0; i < datas.length; i++){ %>
+                  <tr>
+                      <td><a href="/phones/show/<%= datas[i]._id %>"></a><%= datas[i].marque%> - <%= datas[i].modele%></td>
+                      <td><%= datas[i].prix %></td>
+                      <td><td><a href="/phones/edit/<%= datas[i]._id %>">Editer</a></td></td>
+                  </tr>
+             <% } %>
+          </tbody>
+      </table>
+      <%} else{ %>
+          <div>Il n'y a pas de téléphone enregistré</div>
+      <% } %>    
+</div>  
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <form action="/phone" method="POST">
+          <div class="form-group">
+            <label for="marque" class="col-form-label">Marque:</label>
+            <input type="text" class="form-control" id="marque" value="Samsung">
+          </div>
+          <div class="form-group">
+            <label for="modele" class="col-form-label">Modele:</label>
+            <input class="form-control" id="modele" value="A5 2016"></input>
+          </div>
+          <div class="form-group">
+            <label for="prix" class="col-form-label">Prix:</label>
+            <input type="number" class="form-control" id="prix" value="350"></input>
+          </div>
+          <div class="form-group">
+            <label for="img" class="col-form-label">Photo:</label>
+            <input class="form-control" id="img" value="http://"></input>
+          </div>
+          <div class="form-group">
+            <label for="capacite" class="col-form-label">Capacité:</label>
+            <input  type="number" class="form-control" id="capacite" value="16"></input>
+          </div>
+          <div class="form-group">
+            <label for="dim" class="col-form-label">Dimensions:</label>
+            <input class="form-control" id="dim" value="10x14x50"></input>
+          </div>
+          
+    <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+  </div>
+  <div class="modal-footer">
+  </div>
+</div>
+</div>
+</div>

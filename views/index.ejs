@@ -16,7 +16,32 @@
           <h3><a href="/phones">Liste des téléphones</a></h3>
           
       </div> 
+    <form id="loginform" action="/users/login" method="POST" class="form-horizontal needs-validation p-5" novalidate role="form">
 
+        <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon">
+                <i class="fas fa-user mr-3 mt-2 color-dred  p-2 fa-2x"></i>
+            </span>
+
+            <!--  INPUT POUR ENTRER L'EMAIL DE L'UTILISATEUR -->
+            <input id="loginemail" type="email" class="form-control" name="loginemail"  aria-describedby="emailHelp" value="" placeholder="email" required>
+            <div class="invalid-feedback text-center">
+                E-mail invalid
+            </div>
+        </div>
+
+        <div style="margin-bottom: 25px" class="input-group">
+            <span class="">
+                <i class="fas fa-lock mr-3 mt-3 color-dred p-2 fa-2x"></i>
+            </span>
+            <!--  INPUT POUR ENTRER LE MOT DE PASSE -->
+            <input id="loginpassword" type="password" class="form-control" name="loginpassword" placeholder="password" required>
+            <div class="invalid-feedback text-center">
+                Entrez votre mot de passe
+            </div>
+        </div>
+        <button type="submit" class="btn btn-danger text-uppercase">Login </button>
+    </form>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
