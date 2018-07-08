@@ -11,13 +11,14 @@ module.exports = {
     login: function (req, res) {        
         console.log("req = > ",req.body);
         User.findOne({
-            username: req.body.username
+            email: req.body.email,
+            password: req.body.password
         }).exec(function (err, data) {
             if (err) {
                 console.log('Error : ', err);
             } else {
                 console.log("data = > ",data);
-                var donnees = { username: data.username, droit: data.droit }
+                var donnees = { email: data.email, droit: data.droit }
                 // then return a token, secret key should be an env variable
                 const token = jwt.sign(donnees, SECRET, { expiresIn: '60s' });
                 res.json({
